@@ -8,7 +8,7 @@ module.exports = {
       host:"localhost",
       port:5432,
       user:"postgres",
-      database:"cars",
+      database:"store",
       password: process.env.DB_PASSWORD,
       useNullAsDefault: true,
     
