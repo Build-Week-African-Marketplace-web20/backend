@@ -6,7 +6,7 @@ const router = express.Router()
 
 
 
-router.get("/users", restrict() ,async (req, res, next) => {
+router.get("/users", restrict() ,async (req, res, next) => {                            // STEP 6 ADD THE RESTRICT MIDDLEWARE TO THE FUNCTIONS
 	try {
 		res.json(await Users.find())
 	} catch(err) {
@@ -19,7 +19,7 @@ router.post("/users", async (req, res, next) => {
 	try {
 		const { username, password } = req.body
 		const user = await Users.findBy({ username }).first()
-       // const passwordValid = await bcrypt.compare(password, user.password)
+       
 		if (user) {
 			return res.status(409).json({
 				message: "Username is already taken",
@@ -42,9 +42,10 @@ router.post("/users", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
 	try {
 		const { username, password } = req.body
-		const user = await Users.findBy({ username }).first()
-		
-		if (!user) {
+		const user = await Users.findBy({ username }).first() 
+
+	     const passwordValid = await bcrypt.compare(password, user.password)
+		if (!user || !passwordValid) {
 			return res.status(401).json({
 				message: "Invalid Credentials",
 			})
