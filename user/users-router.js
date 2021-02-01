@@ -1,6 +1,6 @@
 const express = require("express")
 const Users = require("./user.model")
-
+const bcrypt = require("bcryptjs")  
 const router = express.Router()
 
 
@@ -16,8 +16,8 @@ router.post("/users", async (req, res, next) => {
 	try {
 		const { username, password } = req.body
 		const user = await Users.findBy({ username }).first()
-        const passwordValid = await bcrypt.compare(password, user.pasword)
-		if (!user || !passwordValid) {
+       // const passwordValid = await bcrypt.compare(password, user.password)
+		if (user) {
 			return res.status(409).json({
 				message: "Username is already taken",
 			})
@@ -26,7 +26,7 @@ router.post("/users", async (req, res, next) => {
 		const newUser = await Users.add({
 			username,
 			// has password with a time complexity of 10
-			password: await bcrypt.has (password, 16)                              // this will call the bcrypt and hash your password 
+			password: await bcrypt.hash (password, 16)                              // this will call the bcrypt and hash your password 
  		})
 
 		res.status(201).json(newUser)
@@ -45,7 +45,7 @@ router.post("/login", async (req, res, next) => {
 			})
 		}
 		 // generate a new session and send it back to the client 
-		 req.session.user = user  
+	
 		res.json({
 			message: `Welcome ${user.username}!`,
 		})

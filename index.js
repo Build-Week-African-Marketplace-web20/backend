@@ -1,5 +1,6 @@
 const express = require("express")
 const welcomeRouter =  require("./Welcome/welcome-router")
+const UserRouter = require("./user/users-router")
 //const db = require("./data/config")
 
 
@@ -12,6 +13,7 @@ const port =  process.env.PORT || 5000
 server.use (express.json())
 
 server.use(welcomeRouter)
+server.use(UserRouter)
 
 
 
