@@ -26,7 +26,7 @@ function restrict() {
 	// 		}
 			// we are authorized by this point 
 			if (!req.session || !req.session.user){                                 // STEP 10
-				return restrict.status(401).json(authError)
+				return res.status(401).json(authError)
 			}
 			next ()
 		}catch (err){
