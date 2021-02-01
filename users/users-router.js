@@ -1,17 +1,20 @@
 const express = require("express")
-const Users = require("./user.model")
 const bcrypt = require("bcryptjs")  
+const Users = require("./users.model")
+const { restrict } = require("./users-middleware")
 const router = express.Router()
 
 
 
-router.get("/users", async (req, res, next) => {
+router.get("/users", restrict() ,async (req, res, next) => {
 	try {
 		res.json(await Users.find())
 	} catch(err) {
 		next(err)
 	}
 })
+
+
 router.post("/users", async (req, res, next) => {
 	try {
 		const { username, password } = req.body
@@ -26,7 +29,7 @@ router.post("/users", async (req, res, next) => {
 		const newUser = await Users.add({
 			username,
 			// has password with a time complexity of 10
-			password: await bcrypt.hash (password, 16)                              // this will call the bcrypt and hash your password 
+			password: await bcrypt.hash (password, 14)                              // this will call the bcrypt and hash your password 
  		})
 
 		res.status(201).json(newUser)
@@ -34,6 +37,8 @@ router.post("/users", async (req, res, next) => {
 		next(err)
 	}
 })
+
+
 router.post("/login", async (req, res, next) => {
 	try {
 		const { username, password } = req.body

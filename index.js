@@ -1,6 +1,6 @@
 const express = require("express")
 const welcomeRouter =  require("./Welcome/welcome-router")
-const UserRouter = require("./user/users-router")
+const UserRouter = require("./users/users-router")
 //const db = require("./data/config")
 
 
