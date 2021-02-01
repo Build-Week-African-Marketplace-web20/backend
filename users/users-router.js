@@ -50,8 +50,8 @@ router.post("/login", async (req, res, next) => {
 				message: "Invalid Credentials",
 			})
 		}
-		 // generate a new session and send it back to the client 
-	
+		 // generate a new session and send it back to the client                                   //STEP 9
+	    req.session.user = user
 		res.json({
 			message: `Welcome ${user.username}!`,
 		})
