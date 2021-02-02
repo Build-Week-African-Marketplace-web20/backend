@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get("/", (req, res, next) => {
 	res.json({
-		message: "WELCOME TO MY API",
+		message:  `welcome ${process.env.COHORT}`,
 	})
 })
 

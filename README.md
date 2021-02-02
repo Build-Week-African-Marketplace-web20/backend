@@ -39,3 +39,9 @@
 6. bcrypt to hash the password in the database 
 7. postgres in production
 8. Jest and supertest
+
+## Environment
+
+Put these values into ".env"
+
+COHORT=""
