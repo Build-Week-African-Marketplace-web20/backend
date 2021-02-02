@@ -21,10 +21,24 @@ function findById(id) {
 		.where({ id })
 		.first()
 }
+function remove(id) {
+	return db("users")
+		.where({ id })
+		.del()
+}
+async function update(id, changes) {
+	await db("users")
+		.where({ id })
+		.update(changes)
+
+	return findById(id)
+}
 
 module.exports = {
 	add,
 	find,
 	findBy,
 	findById,
+	remove,
+	update,
 }
