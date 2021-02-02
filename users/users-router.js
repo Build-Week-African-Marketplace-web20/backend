@@ -72,5 +72,46 @@ router.get("/logout", async (req, res, next) =>{
 				next(err)
 			}
 	  })
+	  router.delete("/users/:id", (req, res) => {
+		Users.remove(req.params.id)
+			.then((count) => {
+				if (count > 0) {
+					res.status(200).json({
+						message: "The user has been nuked",
+					})
+				} else {
+					res.status(404).json({
+						message: "The user could not be found",
+					})
+				}
+			})
+			.catch((error) => {
+				console.log(error)
+				res.status(500).json({
+					message: "Error removing the user",
+				})
+			})
+	})
+	router.put("/users/:id", (req, res) => {
+		
+	
+		Users.update(req.params.id, req.body)
+			.then((user) => {
+				if (user) {
+					res.status(200).json(user)
+				} else {
+					res.status(404).json({
+						message: "The user could not be found",
+					})
+				}
+			})
+			.catch((error) => {
+				console.log(error)
+				res.status(500).json({
+					message: "Error updating the user",
+				})
+			})
+	})
+	
 
 module.exports = router
