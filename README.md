@@ -24,7 +24,9 @@
 | POST    | /users            | register as a new user  username and password  REQUIRED                                                 |
 | POST    | /login            | login as an existing user  (MAKE SURE: the user exist  username and password REQUIRED     )             |
 | GET     | /logout           | this will log you out , will destroy the session and cookie and will not be able to retrive data !      |
-
+| DELETE  | /users/:id        | this will allow admin to delete users from the database !!                                              |  
+| PUT     | /users/:id        | this will allow admin to update any of the users on the database !                                      |
+                                 
 
 
 
