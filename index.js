@@ -1,6 +1,7 @@
 const express = require("express")
 const welcomeRouter =  require("./Welcome/welcome-router")
 const UserRouter = require("./users/users-router")
+const itemRouter = require("./items.js/items-router")
 const session = require("express-session")
 const ConnectSessionKnex = require("connect-session-knex")(session)                           // all these are step 12 
 const db = require("./data/config")
@@ -25,7 +26,7 @@ server.use(session({
 
 server.use(welcomeRouter)
 server.use(UserRouter)
-
+server.use(itemRouter)
 
 
 
