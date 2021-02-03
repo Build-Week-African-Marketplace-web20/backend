@@ -29,7 +29,12 @@
                                  
 
 
-
+### Items
+| Request | URL               | Description : using sessions and cookies once you log in you can get the list of users !                                      
+| ------- | ----------------- | --------------------------------------------------------------------------------------------------------|
+| GET     | /items            | users will be able to get the list of items by name , description , price and location                  |
+| POST    | /items            | users will be able to post items based on name , description , price and location.                      |
+| DELETE  | /items/:id          | users will be able to delete list of items based on id #                                              |
 
 # Tech Stack Use
 *In This Repo*

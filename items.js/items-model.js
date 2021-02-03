@@ -13,8 +13,14 @@ async function add(name) {
 	const [id] = await db("items").insert(name)
 	return findById(id)
 }
+function remove(id) {
+	return db("items")
+		.where({ id })
+		.del()
+}
 module.exports= {
     add,
+    remove,
     find,
     findById
 }
